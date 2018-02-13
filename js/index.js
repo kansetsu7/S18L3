@@ -89,9 +89,12 @@ class Monster extends BaseCharacter {
   }
 
 }
+var hero = new Hero("Bernard", 130, 30);
+var monster = new Monster("Skeleton", 130, 10);
+var rounds = 10;
 
 function addSkillEvent() {
-  var skill = document/getElementById("skill");
+  var skill = document.getElementById("skill");
   skill.onclick = function() {
     heroAttack();
   }
@@ -110,7 +113,7 @@ function endTurn() {
  * hide attack btn
  */
 function heroAttack() {
-  document.getElementByClassName('skill-block')[0].style.display = 'none';
+  document.getElementsByClassName('skill-block')[0].style.display = 'none';
   setTimeout(function() {
     hero.element.classList.add("attacking");
     setTimeout(function() {
@@ -137,7 +140,3 @@ function heroAttack() {
     }
   }, 1100);
 }
-
-var hero = new Hero("Bernard", 130, 30);
-var monster = new Monster("Skeleton", 130, 10);
-var rounds = 10;
