@@ -115,6 +115,7 @@
 }
 
 #hero-image-block    .character-block .effect-image,
+#hero-image-block    .character-block .heal-effect-image,
 #monster-image-block .character-block .effect-image {
   position: absolute;
   left: 60px;
@@ -124,6 +125,7 @@
 /* 設定transition class */
 /* 給 .hurt-text.attacked 使用*/
 #hero-image-block    .character-block .hurt-text,
+#hero-image-block    .character-block .heal-text,
 #monster-image-block .character-block .hurt-text {
   position: absolute;
   font-size: 60px;
@@ -135,7 +137,12 @@
   transition: bottom 500ms;
 }
 
+#hero-image-block    .character-block .heal-text {
+  color: green;
+}
+
 #hero-image-block    .character-block .hurt-text.attacked,
+#hero-image-block    .character-block .heal-text.healed,
 #monster-image-block .character-block .hurt-text.attacked {
   bottom: 150px;
 }
@@ -144,10 +151,7 @@
   position: relative;
 }
 
-#hero-image-block .skill-image {
-  width: 20%;
-}
-
+#hero-image-block .skill-image,
 #hero-image-block .heal-image {
   width: 20%;
 }
