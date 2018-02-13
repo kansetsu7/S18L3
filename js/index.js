@@ -79,7 +79,6 @@ class Hero extends BaseCharacter {
   }
 
   heal() {
-    document.getElementsByClassName("skill-block")[0].style.display = "none";
     var damage = this.maxHp - this.hp
     var heal;
     if (damage >= 30) {
@@ -89,9 +88,7 @@ class Hero extends BaseCharacter {
       heal = this.maxHp - this.hp;
       this.hp = this.maxHp;
     }
-    this.updateHtml(this.hpElement, this.hurtElement);
-
-    // healing effect
+    this.updateHtml(this.hpElement, this.hurtElement);  
     var _this = this;
     var i = 1;
     _this.id = setInterval(function() {
@@ -111,7 +108,7 @@ class Hero extends BaseCharacter {
         document.getElementsByClassName("skill-block")[0].style.display = "block";
       }
 
-    }, 50);    
+    }, 50); 
   }
   
 }
@@ -174,7 +171,7 @@ function keyDownFunction() {
     if (btn === 'a' || btn === 'A') {
       heroAttack();
     } else if (btn === 'd' || btn === 'D') {
-      hero.heal();
+      heroHeal();
     }
   }  
 }
@@ -206,18 +203,42 @@ function heroAttack() {
       setTimeout(function() {
         monster.attack(hero);
         monster.element.classList.remove("attacking");
-        endTurn();
-        if (hero.alive == false) {
-          finish();
-        } else {
-          document.getElementsByClassName("skill-block")[0].style.display = "block";
-        }
+        setTimeout(function() {
+          endTurn();
+          if (hero.alive == false) {
+            finish();
+          } else {
+            document.getElementsByClassName("skill-block")[0].style.display = "block";
+          }
+        }, 500)
       }, 500);
     } else {
       finish();
     }
   }, 1100);
   
+}
+
+function heroHeal() {
+  document.getElementsByClassName("skill-block")[0].style.display = "none";
+  setTimeout(function() {
+    hero.heal();
+  }, 100)
+  setTimeout(function() {
+    monster.element.classList.add("attacking");
+    setTimeout(function() {
+      monster.attack(hero);
+      monster.element.classList.remove("attacking");
+      setTimeout(function() {
+        endTurn();
+        if (hero.alive == false) {
+          finish();
+        } else {
+          document.getElementsByClassName("skill-block")[0].style.display = "block";
+        }
+      }, 500)
+    }, 500);
+  }, 150);
 }
 
 function finish() {
