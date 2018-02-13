@@ -148,6 +148,10 @@
   width: 20%;
 }
 
+#hero-image-block .heal-image {
+  width: 20%;
+}
+
 
 /* 設定 #monster-image-block .character-image 左右反轉 */
 #monster-image-block .character-image {
